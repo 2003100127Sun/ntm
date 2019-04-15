@@ -15,13 +15,6 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-* permutation test
-```python batchPermutation -ng 22 - np 1000```
-> parameters illustration
-```
--ng --help number of chromosome groups. default value, 1.
--np --help number of permutation test. default value, 1000.
-```
 
 1. initial data for a backcross
 ```
@@ -79,3 +72,11 @@ return a 1d array. Each element represents a growth trajectory for individual i 
 	```
 	> explanation: 
 	return a 1d array. Each element represents intervals, genomic regions, groups of chromosome.
+
+5. permutation test
+```python batchPermutation -ng 22 - np 1000```
+> parameters illustration
+```
+-ng --help number of chromosome groups. default value, 1.
+-np --help number of permutation test. default value, 1000.
+```
