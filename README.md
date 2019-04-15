@@ -9,11 +9,14 @@
     + time: April 14, 2019
 
 ## Installation
-	* install necessary package
+	* install python package
 	```
 	pip install -r requirements.txt
 	```
-	* Here is an option for you. You use R if installing R package qtl to allow for a fast speed and better performance [recommend option] or you can use a self-programming module of mixed model of interval mapping for a BC otherwise. 
+	* install R package
+	> Here is an option for you. 
+	1. we recommend that you use R if installing a package 'qtl' or,
+	2. you can use a custom module of mixed model of interval mapping for a BC otherwise. See 'bcNTMapping'.
 
 ## Usage
 
