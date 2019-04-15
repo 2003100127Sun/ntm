@@ -9,11 +9,11 @@
     + time: April 14, 2019
 
 ## Installation
-	* install python package
+* install python package
 	```
 	pip install -r requirements.txt
 	```
-	* install R package
+* install R package
 	> Here is an option for you. 
 	1. we recommend that you install a R package 'qtl' or,
 	2. you can use a custom module of mixed model of interval mapping for a BC otherwise. See 'bcNTMapping'.
@@ -77,7 +77,7 @@
 	return a 1d array. Each element represents intervals, genomic regions, groups of chromosome.
 
 5. permutation test
-	```python batchPermutation -ng 22 - np 1000```
+	```python batchPermutation -ng 22 -np 1000```
 	> parameters illustration
 	```
 	-ng --ngroups -> number of chromosome groups. default value, 1.
