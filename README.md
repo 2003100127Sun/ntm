@@ -15,7 +15,7 @@
 	```
 	* install R package
 	> Here is an option for you. 
-	1. we recommend that you use R if installing a package 'qtl' or,
+	1. we recommend that you install a R package 'qtl' or,
 	2. you can use a custom module of mixed model of interval mapping for a BC otherwise. See 'bcNTMapping'.
 
 ## Usage
