@@ -9,22 +9,19 @@
     + time: April 14, 2019
 
 ## Installation
-	* install necessary package
-    
+* install necessary package
     `pip install -r requirements.txt`
 
 ## Usage
 
-	* permutation test
-	
+* permutation test
 	`python batchPermutation -ng 22 - np 1000`
 	> parameters illustration
 	`- ng --help number of chromosome groups. default value, 1.
 	 - np --help number of permutation test. default value, 1000.
 	`
 
-	* parser data for a backcross
-	
+* parser data for a backcross
 	`python bcNTMapping -fg geno.csv -fp pheno.csv`
 	> parameters illustration
 	`- fg --help a file for phenotype. required.
