@@ -19,8 +19,8 @@ pip install -r requirements.txt
 ```python batchPermutation -ng 22 - np 1000```
 > parameters illustration
 ```
-- ng --help number of chromosome groups. default value, 1.
-- np --help number of permutation test. default value, 1000.
+-ng --help number of chromosome groups. default value, 1.
+-np --help number of permutation test. default value, 1000.
 ```
 
 * parser data for a backcross
@@ -29,7 +29,10 @@ python bcNTMapping -fg geno.csv -fp pheno.csv
 ```
 > parameters illustration
 ```
-- fg --help a file for phenotype. required.
-- fp --help a file for genotype which can consist of different chromosomes. required
+-fg --help a file for phenotype. required.
+-fp --help a file for genotype which can consist of different chromosomes. required
 ```
+> file format
+	1. phenotype file: a file contains growth data observed over time.
+	2. genotype file: a file contains genomic distance, chromosome group and markers.
 
