@@ -33,6 +33,6 @@ python bcNTMapping -fg geno.csv -fp pheno.csv
 -fp --help a file for genotype which can consist of different chromosomes. required
 ```
 > file format
-	1. phenotype file: a file contains growth data observed over time.
+	1. phenotype file: a file contains growth data observed over time, headers of the data, with the columns for time and rows for individuals.
 	2. genotype file: a file contains genomic distance, chromosome group and markers.
 
