@@ -9,10 +9,11 @@
     + time: April 14, 2019
 
 ## Installation
-* install necessary package
-```
-pip install -r requirements.txt
-```
+	* install necessary package
+	```
+	pip install -r requirements.txt
+	```
+	* Here is an option for you. You use R if installing R package qtl to allow for a fast speed and better performance [recommend option] or you can use a self-programming module of mixed model of interval mapping for a BC otherwise. 
 
 ## Usage
 
@@ -33,7 +34,6 @@ pip install -r requirements.txt
 	> parameters illustration
 	```
 	-spt --split -> split your genotype file into different pieces of chromosome group each of which has the information about entire intervals, Morgan distances and markers.
-	-nt -- NT values using numerical trajectory measurement
 	```
 	> file format
 	1. phenotype file: The file contains growth data observed over time, headers of the data, with the columns for time and rows for individuals.
@@ -77,6 +77,6 @@ pip install -r requirements.txt
 	```python batchPermutation -ng 22 - np 1000```
 	> parameters illustration
 	```
-	-ng --help number of chromosome groups. default value, 1.
-	-np --help number of permutation test. default value, 1000.
+	-ng --ngroups -> number of chromosome groups. default value, 1.
+	-np --npermutation -> number of permutation test. default value, 1000.
 	```
