@@ -1,9 +1,10 @@
+import sys
+sys.path.append('../')
+import argparse
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import rpy2.robjects as rob
-from ntim.base.Mapping import mapping
-from NewtonDividedDifference import newtonDividedDifference
+from ndd.NewtonDividedDifference import newtonDividedDifference
 from distributions.UnivariateNormDistrib import univariateNormDistrib
 from sklearn.preprocessing import scale
 from sklearn import mixture
@@ -14,12 +15,49 @@ class bcNTMapping(mapping):
 
     def __init__(self, pheno_data='./populus.BC.pheno.csv', geno_data='./populus.BC.geno.csv'):
         super(bcNTMapping, self).__init__()
+        self.parser = argparse.ArgumentParser(description='Sequence Identity calculations')
+        self.parser.add_argument(
+            "-fp", "--filepheno", metavar='file_pheno',
+            dest='fp', help='filepheno', type=str
+        )
+        self.parser.add_argument(
+            "-fg", "--filegeno", metavar='file_geno',
+            dest='fg', help='filegeno', type=str
+        )
+        self.parser.add_argument(
+            "-nt", "--ntvalues", metavar='nt_values',
+            dest='nt', help='numerical trajectory values', type=int
+        )
+        self.parser.add_argument(
+            "-spt", "--split", metavar='split',
+            dest='spt', help='split', type=int
+        )
+        self.parser.add_argument(
+            "-it", "--iTables", metavar='interval_table',
+            dest='it', help='interval table', type=int
+        )
+        args = self.parser.parse_args()
+        if args.fp:
+            self.pheno_data = args.fp
+        else:
+            self.pheno_data = pheno_data
+        if args.fg:
+            self.geno_data = args.fg
+        else:
+            self.geno_data = geno_data
         self.und = univariateNormDistrib()
-        self.phenos, self.indices_na = self.phenotype(pheno_data=pheno_data)
-        self.genos, self.chromosome_groups, self.genomic_dists = self.genotype(geno_data=geno_data, indices_na=self.indices_na)
+        self.phenos, self.indices_na = self.phenotype(pheno_data=self.pheno_data)
+        self.genos, self.chromosome_groups, self.genomic_dists = self.genotype(geno_data=self.geno_data, indices_na=self.indices_na)
         self.num_samples = self.phenos.shape[0]
         self.num_intervs = self.genos.shape[1] - 2
         self.num_genos_qtl = 2
+        if args.nt == 1:
+            print('NT values using NT measurement: \n{}'.format(self.ntvs()))
+        if args.spt == 1:
+            print('Spliting...: {}'.format(self.split()))
+        if args.it == 1:
+            print('Intervals: {}'.format(self.intervals()))
+            print('Interval table: {}'.format(self.iTable()))
 
     def split(self, ):
         previous = 0
@@ -383,16 +421,19 @@ if __name__ == "__main__":
         pheno_data='./poplar.pheno.csv',
         geno_data='./data/populus.BC.geno1.csv'
     )
+    # 'python bcNTMapping.py -fp ./poplar.pheno.csv -fg ./data/populus.BC.geno1.csv'
 
     # print(p.genos)
 
     # print(p.chromosome_groups)
 
-    print(p.genomic_dists)
-
-    # print(p.intervals())
+    print('genomic distance: {}'.format(p.genomic_dists))
 
     # print(p.ntvs())
+
+    # print(p.split())
+
+    # print(p.intervals())
 
     # print(p.phenos)
 
@@ -427,7 +468,5 @@ if __name__ == "__main__":
     # print(p.enhanced(
     #     sv_fpn='./r/populus.BC.pheno_e.csv'
     # ))
-
-    # print(p.split())
 
     # print(p.probability(num_permutation=20))

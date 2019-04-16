@@ -1,3 +1,4 @@
+import argparse
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -7,8 +8,26 @@ from ntim.bcNTMapping import bcNTMapping
 
 class batchPermutation(object):
 
-    def __init__(self, ):
+    def __init__(self, num_groups_chr=1, num_permutation=1000):
         self.bc_nt = bcNTMapping()
+        self.parser = argparse.ArgumentParser(description='Permutation Tests')
+        self.parser.add_argument(
+            "--ngroupchr", "-ng", metavar='ngroupchr',
+            dest='ng', help='n group chr', type=str
+        )
+        self.parser.add_argument(
+            "--numpmt", "-np", metavar='num_permutation',
+            dest='np', help='num permutation', type=str
+        )
+        args = self.parser.parse_args()
+        if args.ng:
+            self.num_groups_chr = args.ng
+        else:
+            self.num_groups_chr = num_groups_chr
+        if args.np:
+            self.num_permutation = args.np
+        else:
+            self.num_permutation = num_permutation
 
     def qtl(self, ):
         return rob.r(
@@ -44,8 +63,8 @@ class batchPermutation(object):
         plt.legend(fontsize=10)
         plt.show()
 
-    def probability(self, num_groups_chr, num_permutation=500):
-        # for i in range(num_permutation):
+    def probability(self, ):
+        # for i in range(self.num_permutation):
         #     self.bc_nt.enhanced(sv_fpn='./data/populus.BC.pheno_e' + str(i+1) + '.csv')
         rob.r(
             '''
@@ -55,7 +74,7 @@ class batchPermutation(object):
         )
         accs = []
         em_lods = []
-        for i in range(num_groups_chr):
+        for i in range(self.num_groups_chr):
             print('Group {}:'.format(i+1))
             dist = bcNTMapping(
                 pheno_data='populus.BC.pheno_ori78.csv',
@@ -108,7 +127,7 @@ class batchPermutation(object):
                         conf_interv = [dist[k], dist[k+1]]
             print('confident interval: {}'.format(conf_interv))
             arg_max = []
-            for j in range(num_permutation):
+            for j in range(self.num_permutation):
                 rob.globalenv["pheno"] = "populus.BC.pheno_e" + str(j+1) + '.csv'
                 qtl_analysis = self.qtl()
                 em_marks = rob.r.rownames(qtl_analysis[0])
@@ -149,5 +168,5 @@ class batchPermutation(object):
 
 
 if __name__ == "__main__":
-    p = batchPermutation()
-    print(p.probability(num_groups_chr=22, num_permutation=1000))
+    p = batchPermutation(num_groups_chr=22, num_permutation=1000)
+    print(p.probability())

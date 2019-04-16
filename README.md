@@ -49,7 +49,7 @@
 	```
 	> parameters illustration
 	```
-	-nt -- NT values -> using numerical trajectory measurement ***
+	-nt -- NT values -> using numerical trajectory measurement
 	```
 	> explanation: 
 	return a 1d array. Each element represents a growth trajectory for individual i changing over time.
@@ -83,3 +83,7 @@
 	-ng --ngroups -> number of chromosome groups. default value, 1.
 	-np --npermutation -> number of permutation test. default value, 1000.
 	```
+
+## Contact
+If you have any problem in using it, please feel free to contact
+> Jianfeng Sun: jianfeng.sunmt@gmail.com
